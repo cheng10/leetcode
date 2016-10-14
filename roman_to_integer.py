@@ -4,27 +4,14 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        ROMAN = {
-            'I': 1,
-            'V': 5,
-            'X': 10,
-            'L': 50,
-            'C': 100,
-            'D': 500,
-            'M': 1000
-            }
-        
-        if s == '':
-            return 0
+        roman = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
             
-        res = ROMAN[s[-1]]
+        res = 0
         
-        i = len(s)-2
-        while i >= 0:
-            if ROMAN[s[i]] < ROMAN[s[i+1]]:
-                res -= ROMAN[s[i]]
+        for i in range(len(s)-1):
+            if roman[s[i]] < roman[s[i+1]]:
+                res -= roman[s[i]]
             else:
-                res += ROMAN[s[i]]
-            i -= 1
+                res += roman[s[i]]
         
-        return res
+        return res + roman[s[-1]]
